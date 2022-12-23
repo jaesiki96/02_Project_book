@@ -28,9 +28,20 @@ public class MemberController {
     }
 
     // 아이디 중복 체크
-    @PostMapping("/dup-check")
+    @PostMapping("/idDupCheck")
     public ResponseEntity idDupCheck(@RequestParam("inputId") String memberId) {
         String checkResult = memberService.idDupCheck(memberId);
+        if (checkResult != null) {
+            return new ResponseEntity<>("사용가능", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("사용불가", HttpStatus.CONFLICT);
+        }
+    }
+
+    // 전화번호 중복 체크
+    @PostMapping("/phoneDupCheck")
+    public ResponseEntity phoneDupCheck(@RequestParam("inputPhone") String memberPhone) {
+        String checkResult = memberService.phoneDupCheck(memberPhone);
         if (checkResult != null) {
             return new ResponseEntity<>("사용가능", HttpStatus.OK);
         } else {

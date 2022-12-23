@@ -27,4 +27,14 @@ public class MemberService {
             return null;
         }
     }
+
+    // 전화번호 중복 체크
+    public String phoneDupCheck(String memberPhone) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberPhone(memberPhone);
+        if (optionalMemberEntity.isEmpty()) {
+            return "ok";
+        } else {
+            return null;
+        }
+    }
 }

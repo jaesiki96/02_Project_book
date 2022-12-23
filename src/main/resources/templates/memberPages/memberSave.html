@@ -17,7 +17,7 @@
         <input type="text" id="memberId" name="memberId" onblur="idDupCheck()" class="form-control mb-xl-3" placeholder="아이디">
         <input type="password" id="memberPassword" name="memberPassword" class="form-control mb-xl-3" placeholder="비밀번호">
         <input type="text" id="memberName" name="memberName" class="form-control mb-xl-3" placeholder="이름">
-        <input type="text" id="memberPhone" name="memberPhone" oninput="autoHyphen(this)" maxlength="13" class="form-control mb-xl-3" placeholder="전화번호">
+        <input type="text" id="memberPhone" name="memberPhone" onblur="phoneDupCheck()" oninput="autoHyphen(this)" maxlength="13" class="form-control mb-xl-3" placeholder="전화번호">
         <input type="button" id="addressButton" class="form-control mb-xl-3" value="주소 검색" style="border-color: black">
         <input type="text" id="memberAddress" name="memberAddress" class="form-control mb-xl-3" placeholder="주소">
         <input type="button" class="form-control" onclick="saveButton()" value="회원가입" style="background-color: gray; color: white">
@@ -32,14 +32,38 @@
         if (id.length != 0) {
             axios({
                 method: "post",
-                url: "/member/dup-check",
+                url: "/member/idDupCheck",
                 params: {
                     inputId: id
                 }
             }).then(res => {
                 idBox.style.borderColor = "green";
+                return true;
             }).catch(err => {
                 idBox.style.borderColor = "red";
+                alert("중복된 아이디입니다.");
+                return false;
+            })
+        }
+    }
+    // 전화번호 중복체크
+    const phoneDupCheck = () => {
+        const phone = document.getElementById("memberPhone").value;
+        const phoneBox = document.getElementById("memberPhone");
+        if (phone.length != 0) {
+            axios({
+                method: "post",
+                url: "/member/phoneDupCheck",
+                params: {
+                    inputPhone: phone
+                }
+            }).then(res => {
+                phoneBox.style.borderColor = "green";
+                return true;
+            }).catch(err => {
+                phoneBox.style.borderColor = "red";
+                alert("중복된 전화번호 입니다.");
+                return false;
             })
         }
     }
