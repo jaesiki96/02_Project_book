@@ -25,6 +25,22 @@
 </div>
 </body>
 <script th:inline="javascript">
+    // 아이디 중복 체크
+    const idDupCheck = () => {
+        const id = document.getElementById("memberId").value;
+        const idBox = document.getElementById("memberId");
+        axios({
+            method: "post",
+            url: "/member/dup-check",
+            params: {
+                inputId: id
+            }
+        }).then(res => {
+            idBox.style.borderColor = "green";
+        }).catch(err => {
+            idBox.style.borderColor = "red";
+        })
+    }
     // 전화번호 정규식 추가
     const autoHyphen = (target) => {
         target.value = target.value

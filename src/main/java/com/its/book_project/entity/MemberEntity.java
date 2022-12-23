@@ -1,5 +1,6 @@
 package com.its.book_project.entity;
 
+import com.its.book_project.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,15 @@ public class MemberEntity {
 
     @Column(length = 100, nullable = false)
     private String memberAddress;
+
+    // Member 저장 Entity
+    public static MemberEntity toSaveEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberId(memberDTO.getMemberId());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberPhone(memberDTO.getMemberPhone());
+        memberEntity.setMemberAddress(memberDTO.getMemberAddress());
+        return memberEntity;
+    }
 }
