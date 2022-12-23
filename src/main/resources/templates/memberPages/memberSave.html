@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <!--  BootStrap 추가  -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!--  카카오 주소 api 추가  -->
+    <script th:src="@{//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js}"></script>
+    <!--  axios cdn 추가  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="memberSave" style="width: 460px; margin: 150px auto; text-align: center">
+    <h2 class="mb-xl-5">회원가입</h2>
+    <form action="/member/save" method="post">
+        <input type="text" id="memberId" name="memberId" onblur="idDupCheck()" class="form-control mb-xl-3" placeholder="아이디">
+        <input type="password" id="memberPassword" name="memberPassword" class="form-control mb-xl-3" placeholder="비밀번호">
+        <input type="text" id="memberName" name="memberName" class="form-control mb-xl-3" placeholder="이름">
+        <input type="text" id="memberPhone" name="memberPhone" oninput="autoHyphen(this)" maxlength="13" class="form-control mb-xl-3" placeholder="전화번호">
+        <input type="button" id="addressButton" class="form-control mb-xl-3" value="주소 검색" style="border-color: black">
+        <input type="text" id="memberAddress" name="memberAddress" class="form-control mb-xl-3" placeholder="주소">
+        <input type="submit" class="form-control" value="회원가입" style="background-color: gray; color: white">
+    </form>
+</div>
+</body>
+<script th:inline="javascript">
+    // 전화번호 정규식 추가
+    const autoHyphen = (target) => {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+    }
+    // 카카오 주소 api 추가
+    window.onload = function(){
+        document.getElementById("addressButton").addEventListener("click", function(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    document.getElementById("memberAddress").value = data.address;
+                }
+            }).open();
+        });
+    }
+</script>
+</html>
