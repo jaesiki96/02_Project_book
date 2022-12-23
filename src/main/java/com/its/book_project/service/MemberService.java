@@ -37,4 +37,19 @@ public class MemberService {
             return null;
         }
     }
+
+    // 로그인 처리
+    public MemberDTO login(MemberDTO memberDTO) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(memberDTO.getMemberId());
+        if (optionalMemberEntity.isPresent()) {
+            MemberEntity memberEntity = optionalMemberEntity.get();
+            if (memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+                return MemberDTO.toDTO(memberEntity);
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
 }

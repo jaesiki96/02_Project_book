@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -48,4 +50,23 @@ public class MemberController {
             return new ResponseEntity<>("사용불가", HttpStatus.CONFLICT);
         }
     }
+
+    // 로그인 페이지 출력
+    @GetMapping("/login")
+    public String loginForm() {
+        return "memberPages/memberLogin";
+    }
+
+    // 로그인 처리
+    @PostMapping("/login")
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+        MemberDTO loginResult = memberService.login(memberDTO);
+        if (loginResult != null) {
+            session.setAttribute("loginEmail", memberDTO.getMemberId());
+            return "index";
+        } else {
+            return "memberPages/memberLogin";
+        }
+    }
+
 }

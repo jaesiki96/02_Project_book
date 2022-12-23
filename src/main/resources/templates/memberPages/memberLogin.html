@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div id="memberLogin" style="width: 460px; margin: 150px auto; text-align: center">
+    <h2 class="mb-xl-5">로그인</h2>
+    <form action="/member/login" method="post" name="loginForm">
+        <input type="text" id="memberId" name="memberId" class="form-control mb-xl-3" placeholder="아이디">
+        <input type="password" id="memberPassword" name="memberPassword" class="form-control mb-xl-3" placeholder="비밀번호">
+        <span id="emptyCheck"></span>
+        <input type="button" class="form-control mt-xl-3" onclick="loginButton()" value="로그인" style="background-color: gray; color: white">
+    </form>
+</div>
+</body>
+<script th:inline="javascript">
+    const loginButton = () => {
+        const id = document.getElementById("memberId").value;
+        const pass = document.getElementById("memberPassword").value;
+        const check = document.getElementById("emptyCheck");
+        if (id.length == 0) {
+            check.innerHTML = "아아디를 입력해주세요.";
+            check.style.color = "red";
+            return false;
+        } else if (pass.length == 0) {
+            check.innerHTML = "비밀번호를 입력해주세요";
+            check.style.color = "red";
+            return false;
+        } else {
+            document.loginForm.submit();
+            return true;
+        }
+    }
+</script>
+</html>
