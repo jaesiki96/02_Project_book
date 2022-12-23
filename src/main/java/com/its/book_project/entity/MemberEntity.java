@@ -15,7 +15,7 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
     private String memberId;
 
     @Column(length = 20, nullable = false)
@@ -24,7 +24,7 @@ public class MemberEntity {
     @Column(length = 20, nullable = false)
     private String memberName;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
     private String memberPhone;
 
     @Column(length = 100, nullable = false)
