@@ -5,6 +5,8 @@ import com.its.book_project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,5 +53,15 @@ public class MemberService {
         } else {
             return null;
         }
+    }
+
+    // 회원목록 처리
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for (MemberEntity memberEntity : memberEntityList) {
+            memberDTOList.add(MemberDTO.toDTO(memberEntity));
+        }
+        return memberDTOList;
     }
 }

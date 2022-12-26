@@ -8,5 +8,6 @@
 <a th:unless="${session.loginId}" href="/member/save">회원가입</a>
 <a th:unless="${session.loginId}" href="/member/login">로그인</a>
 <a th:if="${session.loginId}" href="/member/logout">로그아웃</a>
+<a th:if="${session.loginId == 'admin'}" href="/admin">관리자</a>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -75,5 +76,13 @@ public class MemberController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "index";
+    }
+
+    // 회원목록 처리
+    @GetMapping("/")
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "memberPages/memberList";
     }
 }
