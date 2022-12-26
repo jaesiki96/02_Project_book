@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +32,10 @@ public class BookEntity extends BaseEntity {
 
     @Column
     private int fileAttached;
+
+    // BookEntity 와 BookFileEntity 의 연관관계 (1 : N)
+    @OneToMany(mappedBy = "bookEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BookFileEntity> bookFileEntityList = new ArrayList<>();
 
     // 책 저장 Entity
     public static BookEntity toSaveEntity(BookDTO bookDTO) {

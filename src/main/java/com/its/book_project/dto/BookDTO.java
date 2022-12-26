@@ -30,6 +30,15 @@ public class BookDTO {
         bookDTO.setBookPublisher(bookEntity.getBookPublisher());
         bookDTO.setBookPublishingDate(bookEntity.getBookPublishingDate());
         bookDTO.setBookPrice(bookEntity.getBookPrice());
+        if (bookEntity.getFileAttached() == 1) {
+            // 첨부파일 있음
+            bookDTO.setFileAttached(bookEntity.getFileAttached());
+            bookDTO.setOriginalFileName(bookEntity.getBookFileEntityList().get(0).getOriginalFileName());
+            bookDTO.setStoredFileName(bookEntity.getBookFileEntityList().get(0).getStoredFileName());
+        } else {
+            // 첨부파일 없음
+            bookDTO.setFileAttached(bookEntity.getFileAttached());
+        }
         return bookDTO;
     }
 }
