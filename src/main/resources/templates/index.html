@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>book</title>
 </head>
 <body>
-<a href="/member/save">회원가입</a>
-<a href="/member/login">로그인</a>
+<a th:unless="${session.loginId}" href="/member/save">회원가입</a>
+<a th:unless="${session.loginId}" href="/member/login">로그인</a>
+<a th:if="${session.loginId}" href="/member/logout">로그아웃</a>
 </body>
 </html>
