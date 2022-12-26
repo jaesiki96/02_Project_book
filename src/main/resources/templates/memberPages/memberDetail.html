@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>회원관리</title>
+    <title>회원조회</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <style>
         table, th, td {
@@ -24,16 +24,32 @@
 </head>
 <body>
 <table>
-  <tr>
-    <th>회원번호</th>
-    <th>아이디</th>
-    <th>가입날짜</th>
-  </tr>
-    <tr th:each="member: ${memberList}">
+    <tr>
+        <th>회원번호</th>
         <td th:text="${member.id}"></td>
-        <td>
-            <a th:text="${member.memberId}" th:href="@{|/member/${member.id}|}"></a>
-        </td>
+    </tr>
+    <tr>
+        <th>아이디</th>
+        <td th:text="${member.memberId}"></td>
+    </tr>
+    <tr>
+        <th>비밀번호</th>
+        <td th:text="${member.memberPassword}"></td>
+    </tr>
+    <tr>
+        <th>이름</th>
+        <td th:text="${member.memberName}"></td>
+    </tr>
+    <tr>
+        <th>전화번호</th>
+        <td th:text="${member.memberPhone}"></td>
+    </tr>
+    <tr>
+        <th>주소</th>
+        <td th:text="${member.memberAddress}"></td>
+    </tr>
+    <tr>
+        <th>가입날짜</th>
         <td th:text="*{#temporals.format(member.memberCreatedDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
     </tr>
 </table>

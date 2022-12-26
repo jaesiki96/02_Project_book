@@ -64,4 +64,14 @@ public class MemberService {
         }
         return memberDTOList;
     }
+
+    // 회원조회 처리
+    public MemberDTO findById(Long id) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+        if (optionalMemberEntity.isPresent()) {
+            return MemberDTO.toDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
 }

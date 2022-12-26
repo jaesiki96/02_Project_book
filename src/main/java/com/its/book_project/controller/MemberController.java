@@ -85,4 +85,12 @@ public class MemberController {
         model.addAttribute("memberList", memberDTOList);
         return "memberPages/memberList";
     }
+
+    // 회원조회 처리
+    @GetMapping("/{id}")
+    public String findById(@PathVariable Long id, Model model) {
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("member", memberDTO);
+        return "memberPages/memberDetail";
+    }
 }
