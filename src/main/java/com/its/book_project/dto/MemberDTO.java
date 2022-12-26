@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -15,6 +17,7 @@ public class MemberDTO {
     private String memberName;
     private String memberPhone;
     private String memberAddress;
+    private LocalDateTime memberCreatedDate;
 
     public static MemberDTO toDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
@@ -24,6 +27,7 @@ public class MemberDTO {
         memberDTO.setMemberName(memberEntity.getMemberName());
         memberDTO.setMemberPhone(memberEntity.getMemberPhone());
         memberDTO.setMemberAddress(memberEntity.getMemberAddress());
+        memberDTO.setMemberCreatedDate(memberEntity.getCreatedTime());
         return memberDTO;
     }
 }
