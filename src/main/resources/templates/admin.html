@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Book : 관리자</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+<th:block th:replace="commonPages/header :: header"></th:block>
 <a href="/book/save">책등록</a>
 <a href="#">책관리</a>
 <a th:if="${session.loginId == 'admin'}" href="/member/">회원관리</a>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+<th:block th:replace="commonPages/header :: header"></th:block>
 <div id="bookSave" style="width: 460px; margin: 150px auto; text-align: center">
     <h2 class="mb-xl-5">책등록</h2>
     <form action="/book/save" method="post" name="saveForm">
@@ -20,6 +21,7 @@
 </div>
 </body>
 <script th:inline="javascript">
+    // 출판일자 정규식 추가
     const onlyNumber = () => {
         let date = document.querySelector("#bookPublishingDate");
 
@@ -51,5 +53,7 @@
             date.value = result;
         })
     }
+    // 가격 정규식 추가
+
 </script>
 </html>

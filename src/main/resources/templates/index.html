@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Book</title>
+    <!--  BootStrap 추가  -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+<th:block th:replace="commonPages/header :: header"></th:block>
 <a th:unless="${session.loginId}" href="/member/save">회원가입</a>
 <a th:unless="${session.loginId}" href="/member/login">로그인</a>
 <a th:if="${session.loginId}" href="/member/logout">로그아웃</a>
