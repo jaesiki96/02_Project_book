@@ -10,7 +10,7 @@
 <th:block th:replace="commonPages/header :: header"></th:block>
 <div id="bookSave" style="width: 460px; margin: 150px auto; text-align: center">
     <h2 class="mb-xl-5">책등록</h2>
-    <form action="/book/save" method="post" name="saveForm">
+    <form action="/book/save" method="post" name="saveForm" enctype="multipart/form-data">
         <input type="text" id="bookName" name="bookName" class="form-control mb-xl-3" placeholder="제목">
         <input type="text" id="bookPublisher" name="bookPublisher" class="form-control mb-xl-3" placeholder="작가·출판사">
         <input type="text" id="bookPublishingDate" name="bookPublishingDate" oninput="onlyNumber()" class="form-control mb-xl-3" placeholder="출판일자">
@@ -58,6 +58,5 @@
         confirm("저장하시겠습니까?");
         document.saveForm.submit();
     }
-
 </script>
 </html>
