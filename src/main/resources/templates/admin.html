@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <title>Book : 관리자</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        .category {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        a {
+            text-decoration: none
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="commonPages/header :: header"></th:block>
-<a href="/book/save">책등록</a>
-<a href="/book/">책관리</a>
-<a href="/member/">회원관리</a>
-<a href="#">구매목록</a>
+<div class="category">
+    <a href="/book/save">책등록</a>
+    <a href="/book/">책관리</a>
+    <a href="/member/">회원관리</a>
+    <a href="#">구매목록</a>
+</div>
 </body>
 </html>

@@ -14,9 +14,17 @@
                     <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
                     <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
                 </ul>
-                <ul class="nav">
-                    <li class="nav-item"><a href="/member/login" class="nav-link link-dark px-2">Login</a></li>
-                    <li class="nav-item"><a href="/member/save" class="nav-link link-dark px-2">Sign up</a></li>
+                <ul class="nav" th:if="${session.loginId == null}">
+                    <li class="nav-item"><a href="/member/login" class="nav-link link-dark px-2">로그인</a></li>
+                    <li class="nav-item"><a href="/member/save" class="nav-link link-dark px-2">회원가입</a></li>
+                </ul>
+                <ul class="nav" th:if="${session.loginId != null && session.loginId != 'admin'}">
+                    <li class="nav-item"><a href="/member/logout" class="nav-link link-dark px-2">로그아웃</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">마이페이지</a></li>
+                </ul>
+                <ul class="nav" th:if="${session.loginId == 'admin'}">
+                    <li class="nav-item"><a href="/member/logout" class="nav-link link-dark px-2">로그아웃</a></li>
+                    <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2">관리자</a></li>
                 </ul>
             </div>
         </nav>

@@ -5,12 +5,24 @@
     <title>Book</title>
     <!--  BootStrap 추가  -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        .category {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        a {
+            text-decoration: none
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="commonPages/header :: header"></th:block>
-<a th:unless="${session.loginId}" href="/member/save">회원가입</a>
-<a th:unless="${session.loginId}" href="/member/login">로그인</a>
-<a th:if="${session.loginId}" href="/member/logout">로그아웃</a>
-<a th:if="${session.loginId == 'admin'}" href="/admin">관리자</a>
+<div class="category">
+    <a th:unless="${session.loginId}" href="/member/save">회원가입</a>
+    <a th:unless="${session.loginId}" href="/member/login">로그인</a>
+    <a th:if="${session.loginId}" href="/member/logout">로그아웃</a>
+    <a th:if="${session.loginId == 'admin'}" href="/admin">관리자</a>
+</div>
 </body>
 </html>
