@@ -11,10 +11,4 @@ public class HomeController {
     public String index() {
         return "index";
     }
-
-    // 관리자 페이지
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
 }
