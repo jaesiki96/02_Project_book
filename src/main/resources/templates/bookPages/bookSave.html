@@ -12,11 +12,44 @@
     <form action="/book/save" method="post" name="saveForm">
         <input type="text" id="bookName" name="bookName" class="form-control mb-xl-3" placeholder="제목">
         <input type="text" id="bookPublisher" name="bookPublisher" class="form-control mb-xl-3" placeholder="작가·출판사">
-        <input type="text" id="bookPublishingDate" name="bookPublishingDate" class="form-control mb-xl-3" placeholder="출판일자">
+        <input type="text" id="bookPublishingDate" name="bookPublishingDate" oninput="onlyNumber()" class="form-control mb-xl-3" placeholder="출판일자">
         <input type="text" id="bookPrice" name="bookPrice" class="form-control mb-xl-3" placeholder="가격">
         <input type="file" id="bookFile" name="bookFile" class="form-control mb-xl-3" value="대표사진">
         <input type="button" class="form-control" onclick="saveButton()" value="등록" style="background-color: gray; color: white">
     </form>
 </div>
 </body>
+<script th:inline="javascript">
+    const onlyNumber = () => {
+        let date = document.querySelector("#bookPublishingDate");
+
+        // 문자열, 하이픈을 막기 위해 input event 사용
+        date.addEventListener("input", () => {
+
+            // 사용자 입력값은 모두 숫자만 받는다.(나머지는 ""처리)
+            let val = date.value.replace(/\D/g, "");
+            let length = val.length;
+
+            // 출력할 결과 변수
+            let result = '';
+
+            // 5개일때 - 20221 : 바로 출력
+            if (length < 6) result = val;
+            // 6~7일 때 - 202210 : 2022-101으로 출력
+            else if (length < 8) {
+                result += val.substring(0, 4);
+                result += "-";
+                result += val.substring(4);
+                // 8개 일 때 - 2022-1010 : 2022-10-10으로 출력
+            } else {
+                result += val.substring(0, 4);
+                result += "-";
+                result += val.substring(4, 6);
+                result += "-";
+                result += val.substring(6);
+            }
+            date.value = result;
+        })
+    }
+</script>
 </html>
