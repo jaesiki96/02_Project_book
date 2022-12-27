@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book : 책등록</title>
+    <!--  BootStrap 추가  -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div id="bookSave" style="width: 460px; margin: 150px auto; text-align: center">
+    <h2 class="mb-xl-5">책등록</h2>
+    <form action="/book/save" method="post" name="saveForm">
+        <input type="text" id="bookName" name="bookName" class="form-control mb-xl-3" placeholder="제목">
+        <input type="text" id="bookPublisher" name="bookPublisher" class="form-control mb-xl-3" placeholder="작가·출판사">
+        <input type="text" id="bookPublishingDate" name="bookPublishingDate" class="form-control mb-xl-3" placeholder="출판일자">
+        <input type="text" id="bookPrice" name="bookPrice" class="form-control mb-xl-3" placeholder="가격">
+        <input type="file" id="bookFile" name="bookFile" class="form-control mb-xl-3" value="대표사진">
+        <input type="button" class="form-control" onclick="saveButton()" value="등록" style="background-color: gray; color: white">
+    </form>
+</div>
+</body>
+</html>
