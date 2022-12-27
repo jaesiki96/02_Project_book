@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book : 책목록</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        table, th, td {
+            border: 1px solid #bcbcbc;
+        }
+
+        table {
+            width: 600px;
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+        }
+
+        tr, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="commonPages/header :: header"></th:block>
+<table>
+    <tr>
+        <th>책번호</th>
+        <th>제목</th>
+    </tr>
+    <tr th:each="book: ${bookList}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.bookName}"></td>
+    </tr>
+</table>
+</body>
+</html>

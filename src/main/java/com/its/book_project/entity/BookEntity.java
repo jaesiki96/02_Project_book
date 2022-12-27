@@ -34,7 +34,7 @@ public class BookEntity extends BaseEntity {
     private int fileAttached;
 
     // BookEntity 와 BookFileEntity 의 연관관계 (1 : N)
-    @OneToMany(mappedBy = "bookEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "bookEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<BookFileEntity> bookFileEntityList = new ArrayList<>();
 
     // 책 저장 Entity

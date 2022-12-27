@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +44,15 @@ public class BookService {
             bookFileRepository.save(bookFileEntity);
             return savedId;
         }
+    }
+
+    // 책 목록 처리
+    public List<BookDTO> findAll() {
+        List<BookEntity> bookEntityList = bookRepository.findAll();
+        List<BookDTO> bookDTOList = new ArrayList<>();
+        for (BookEntity bookEntity : bookEntityList) {
+            bookDTOList.add(BookDTO.toDTO(bookEntity));
+        }
+        return bookDTOList;
     }
 }

@@ -8,8 +8,8 @@
 <body>
 <th:block th:replace="commonPages/header :: header"></th:block>
 <a href="/book/save">책등록</a>
-<a href="#">책관리</a>
-<a th:if="${session.loginId == 'admin'}" href="/member/">회원관리</a>
+<a href="/book/">책관리</a>
+<a href="/member/">회원관리</a>
 <a href="#">구매목록</a>
 </body>
 </html>
