@@ -53,7 +53,11 @@
             date.value = result;
         })
     }
-    // 가격 정규식 추가
+    // 등록 확인
+    const saveButton = () => {
+        confirm("저장하시겠습니까?");
+        document.saveForm.submit();
+    }
 
 </script>
 </html>
