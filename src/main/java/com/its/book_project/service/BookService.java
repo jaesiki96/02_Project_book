@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,5 +55,15 @@ public class BookService {
             bookDTOList.add(BookDTO.toDTO(bookEntity));
         }
         return bookDTOList;
+    }
+
+    // 책 조회 처리
+    public BookDTO findById(Long id) {
+        Optional<BookEntity> optionalBookEntity = bookRepository.findById(id);
+        if (optionalBookEntity.isPresent()) {
+            return BookDTO.toDTO(optionalBookEntity.get());
+        } else {
+            return null;
+        }
     }
 }

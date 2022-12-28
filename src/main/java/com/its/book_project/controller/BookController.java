@@ -5,10 +5,7 @@ import com.its.book_project.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,5 +35,13 @@ public class BookController {
         List<BookDTO> bookDTOList = bookService.findAll();
         model.addAttribute("bookList", bookDTOList);
         return "bookPages/bookList";
+    }
+
+    // 책 조회 처리
+    @GetMapping("/{id}")
+    public String findById(@PathVariable Long id, Model model) {
+        BookDTO bookDTO = bookService.findById(id);
+        model.addAttribute("book", bookDTO);
+        return "bookPages/bookDetail";
     }
 }
