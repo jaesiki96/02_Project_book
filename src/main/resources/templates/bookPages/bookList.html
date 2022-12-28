@@ -20,6 +20,21 @@
             color: #000;
             text-decoration: none;
         }
+
+        .content {
+            font-size: 12px;
+            width: 500px;
+            margin: 20px auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            line-height: 1.2;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2 ;
+            -webkit-box-orient: vertical;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +53,8 @@
             </a> <br>
             <span th:text="${book.bookPublisher}" style="font-size: 13px; color: #595959"></span> <br>
             <span th:text="${#numbers.formatInteger(book.bookPrice, 0, 'COMMA') + '원'}"
-                  style="font-weight: 700; font-size: 14px"></span>
+                  style="font-weight: 700; font-size: 14px"></span> <br>
+            <span class="content" th:text="${book.bookContent}"></span>
         </td>
         <td th:if="${session.loginId != 'admin'}">
             <button class="btn btn-outline-primary">장바구니</button>
