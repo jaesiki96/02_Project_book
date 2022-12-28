@@ -40,4 +40,17 @@ public class MemberEntity extends BaseEntity {
         memberEntity.setMemberAddress(memberDTO.getMemberAddress());
         return memberEntity;
     }
+
+    // Member 수정 Entity
+    public static MemberEntity toUpdateEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        // setId 추가
+        memberEntity.setId(memberDTO.getId());
+        memberEntity.setMemberId(memberDTO.getMemberId());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberPhone(memberDTO.getMemberPhone());
+        memberEntity.setMemberAddress(memberDTO.getMemberAddress());
+        return memberEntity;
+    }
 }

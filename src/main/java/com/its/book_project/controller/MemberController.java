@@ -93,4 +93,20 @@ public class MemberController {
         model.addAttribute("member", memberDTO);
         return "memberPages/memberDetail";
     }
+
+    // 회원수정 페이지 출력
+    @GetMapping("/update")
+    public String updateForm(Model model, HttpSession session) {
+        String loginId = (String) session.getAttribute("loginId");
+        MemberDTO memberDTO = memberService.findByMemberId(loginId);
+        model.addAttribute("member", memberDTO);
+        return "memberPages/memberUpdate";
+    }
+
+    // 회원수정 처리
+    @PostMapping("/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+        memberService.update(memberDTO);
+        return "redirect:/book/";
+    }
 }

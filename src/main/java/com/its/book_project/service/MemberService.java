@@ -74,4 +74,20 @@ public class MemberService {
             return null;
         }
     }
+
+    // 회원수정 페이지 출력
+    public MemberDTO findByMemberId(String loginId) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(loginId);
+        if (optionalMemberEntity.isPresent()) {
+            return MemberDTO.toDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    // 회원수정 처리
+    public void update(MemberDTO memberDTO) {
+        MemberEntity toUpdateEntity = MemberEntity.toUpdateEntity(memberDTO);
+        memberRepository.save(toUpdateEntity);
+    }
 }
