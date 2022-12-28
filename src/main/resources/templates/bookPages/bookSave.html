@@ -55,9 +55,12 @@
         })
     }
     // 등록 확인
-    const saveButton = () => {
-        confirm("저장하시겠습니까?");
-        document.saveForm.submit();
+    function saveButton(){
+        if (confirm("저장 하시겠습니까?") == true) {
+            document.saveForm.submit();
+        } else {
+            return;
+        }
     }
 </script>
 </html>
