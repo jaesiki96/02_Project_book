@@ -28,10 +28,12 @@
     <tr>
         <th>책번호</th>
         <th>제목</th>
+        <th>가격</th>
     </tr>
     <tr th:each="book: ${bookList}">
         <td th:text="${book.id}"></td>
         <td th:text="${book.bookName}"></td>
+        <td th:text="${#numbers.formatInteger(book.bookPrice, 0, 'COMMA') + '원'}"></td>
     </tr>
 </table>
 </body>
