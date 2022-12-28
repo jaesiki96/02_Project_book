@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book: 책조회</title>
+    <title th:text="${book.bookName}"></title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <style>
         .main {
