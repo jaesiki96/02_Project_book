@@ -28,7 +28,7 @@ public class MemberController {
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) {
         memberService.save(memberDTO);
-        return "index";
+        return "redirect:/book/";
     }
 
     // 아이디 중복 체크
@@ -65,7 +65,7 @@ public class MemberController {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
             session.setAttribute("loginId", memberDTO.getMemberId());
-            return "index";
+            return "redirect:/book/";
         } else {
             return "memberPages/memberLogin";
         }
@@ -75,7 +75,7 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "index";
+        return "redirect:/book/";
     }
 
     // 회원목록 처리

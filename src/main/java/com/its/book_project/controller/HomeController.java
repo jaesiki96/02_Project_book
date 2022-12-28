@@ -9,6 +9,6 @@ public class HomeController {
     // index 페이지
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "redirect:/book/";
     }
 }
