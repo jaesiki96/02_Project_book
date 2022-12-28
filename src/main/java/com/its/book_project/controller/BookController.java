@@ -29,7 +29,7 @@ public class BookController {
     @PostMapping("/save")
     public String save(@ModelAttribute BookDTO bookDTO) throws IOException {
         bookService.save(bookDTO);
-        return "/bookPages/bookList";
+        return "redirect:/book/";
     }
 
     // 책 목록 처리
