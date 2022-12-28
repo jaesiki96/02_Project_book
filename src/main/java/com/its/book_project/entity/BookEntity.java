@@ -27,6 +27,9 @@ public class BookEntity extends BaseEntity {
     @Column(length = 30, nullable = false)
     private String bookPublishingDate;
 
+    @Column(length = 3000, nullable = false)
+    private String bookContent;
+
     @Column
     private int bookPrice;
 
@@ -43,6 +46,7 @@ public class BookEntity extends BaseEntity {
         bookEntity.setBookName(bookDTO.getBookName());
         bookEntity.setBookPublisher(bookDTO.getBookPublisher());
         bookEntity.setBookPublishingDate(bookDTO.getBookPublishingDate());
+        bookEntity.setBookContent(bookDTO.getBookContent());
         bookEntity.setBookPrice(bookDTO.getBookPrice());
         bookEntity.setFileAttached(0);
         return bookEntity;
@@ -54,6 +58,7 @@ public class BookEntity extends BaseEntity {
         bookEntity.setBookName(bookDTO.getBookName());
         bookEntity.setBookPublisher(bookDTO.getBookPublisher());
         bookEntity.setBookPublishingDate(bookDTO.getBookPublishingDate());
+        bookEntity.setBookContent(bookDTO.getBookContent());
         bookEntity.setBookPrice(bookDTO.getBookPrice());
         bookEntity.setFileAttached(1);
         return bookEntity;

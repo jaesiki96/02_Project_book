@@ -16,6 +16,7 @@ public class BookDTO {
     private String bookName;
     private String bookPublisher;
     private String bookPublishingDate;
+    private String bookContent;
     private int bookPrice;
     // 책 이미지 업로드
     private MultipartFile bookFile;
@@ -29,6 +30,7 @@ public class BookDTO {
         bookDTO.setBookName(bookEntity.getBookName());
         bookDTO.setBookPublisher(bookEntity.getBookPublisher());
         bookDTO.setBookPublishingDate(bookEntity.getBookPublishingDate());
+        bookDTO.setBookContent(bookEntity.getBookContent());
         bookDTO.setBookPrice(bookEntity.getBookPrice());
         if (bookEntity.getFileAttached() == 1) {
             // 첨부파일 있음
