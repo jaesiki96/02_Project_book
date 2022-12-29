@@ -3,7 +3,6 @@ package com.its.book_project.entity;
 import com.its.book_project.dto.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
