@@ -61,11 +61,12 @@ public class MemberController {
 
     // 로그인 처리
     @PostMapping("/login")
-    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session,
+                        @RequestParam(value = "redirectURL", defaultValue = "/book/") String redirectURL) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
             session.setAttribute("loginId", memberDTO.getMemberId());
-            return "redirect:/book/";
+            return "redirect:" + redirectURL;
         } else {
             return "memberPages/memberLogin";
         }
