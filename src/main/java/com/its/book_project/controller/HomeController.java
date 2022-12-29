@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    // index 페이지
+    // Home 출력
     @GetMapping("/")
-    public String index() {
+    public String Home() {
         return "redirect:/book/";
     }
 }
