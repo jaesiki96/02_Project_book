@@ -14,20 +14,9 @@
 <body>
 <th:block th:replace="commonPages/header :: header"></th:block>
 <div id="memberPage" style="width: 460px; margin: 100px auto; text-align: center">
-        <button class="form-control" onclick="updateFn()">
-            <a href="/member/update">정보수정</a>
-        </button>
+    <a href="/member/update">
+        <button class="form-control">회원정보수정</button>
+    </a>
 </div>
 </body>
-<script th:inline="javascript">
-    const updateFn = () => {
-        const sessionId = [[${session.loginId}]];
-        if (sessionId == null) {
-            alert("로그인 후 이용해주세요.")
-            location.href = "/member/login";
-        } else {
-            return true;
-        }
-    }
-</script>
 </html>
