@@ -27,7 +27,7 @@
                 </ul>
                 <ul class="nav" th:if="${session.loginId != null}">
                     <li class="nav-item"><a href="/member/logout" class="nav-link link-dark px-2">로그아웃</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="${session.loginId}"></a></li>
+                    <li class="nav-item"><a href="/member/myPage" class="nav-link link-dark px-2" th:text="${session.loginId}"></a></li>
                 </ul>
             </div>
         </nav>

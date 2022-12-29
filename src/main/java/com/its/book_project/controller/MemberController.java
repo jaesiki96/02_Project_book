@@ -109,4 +109,10 @@ public class MemberController {
         memberService.update(memberDTO);
         return "redirect:/book/";
     }
+
+    // 회원페이지 출력
+    @GetMapping("/myPage")
+    public String myPageForm() {
+        return "memberPages/memberPage";
+    }
 }
