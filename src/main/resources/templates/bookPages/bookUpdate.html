@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>책 수정</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<th:block th:replace="commonPages/header :: header"></th:block>
+<div id="bookUpdate" style="width: 460px; margin: 100px auto; text-align: center">
+    <h2 class="mb-xl-5">책 수정</h2>
+    <form action="/book/update" method="post" name="updateForm" enctype="multipart/form-data">
+        <input type="hidden" id="id" name="id" th:value="${book.id}" class="form-control mb-xl-3" readonly>
+        <input type="text" id="bookName" name="bookName" th:value="${book.bookName}" class="form-control mb-xl-3">
+        <input type="text" id="bookPublisher" name="bookPublisher" th:value="${book.bookPublisher}" class="form-control mb-xl-3">
+        <input type="text" id="bookPublishingDate" name="bookPublishingDate" th:value="${book.bookPublishingDate}" oninput="onlyNumber()" class="form-control mb-xl-3">
+        <textarea id="bookContent" name="bookContent" th:value="${book.bookContent}" cols="30" rows="10" class="form-control mb-xl-3"></textarea>
+        <input type="text" id="bookPrice" name="bookPrice" th:value="${book.bookPrice}" class="form-control mb-xl-3">
+        <input type="file" id="bookFile" name="bookFile" th:value="${book.bookFile}" class="form-control mb-xl-3">
+        <input type="button" class="form-control" onclick="bookUpdateBtn()" value="수정" style="background-color: gray; color: white">
+    </form>
+</div>
+</body>
+<script th:inline="javascript">
+    // 출판일자 정규식 추가
+    const onlyNumber = () => {
+        let date = document.querySelector("#bookPublishingDate");
+
+        // 문자열, 하이픈을 막기 위해 input event 사용
+        date.addEventListener("input", () => {
+
+            // 사용자 입력값은 모두 숫자만 받는다.(나머지는 ""처리)
+            let val = date.value.replace(/\D/g, "");
+            let length = val.length;
+
+            // 출력할 결과 변수
+            let result = '';
+
+            // 5개일때 - 20221 : 바로 출력
+            if (length < 6) result = val;
+            // 6~7일 때 - 202210 : 2022-101으로 출력
+            else if (length < 8) {
+                result += val.substring(0, 4);
+                result += "-";
+                result += val.substring(4);
+                // 8개 일 때 - 2022-1010 : 2022-10-10으로 출력
+            } else {
+                result += val.substring(0, 4);
+                result += "-";
+                result += val.substring(4, 6);
+                result += "-";
+                result += val.substring(6);
+            }
+            date.value = result;
+        })
+    }
+    // 등록 확인
+    function bookUpdateBtn(){
+        if (confirm("수정 하시겠습니까?") == true) {
+            document.updateForm.submit();
+        } else {
+            return;
+        }
+    }
+</script>
+</html>

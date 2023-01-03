@@ -62,13 +62,9 @@
                   style="font-weight: 700; font-size: 14px"></span> <br>
             <span class="content" th:text="${book.bookContent}"></span>
         </td>
-        <td th:if="${session.loginId != 'admin'}">
+        <td>
             <button class="btn btn-outline-primary">장바구니</button>
             <button class="btn btn-outline-success">바로구매</button>
-        </td>
-        <td th:if="${session.loginId == 'admin'}">
-            <button class="btn btn-outline-primary">책 수정</button>
-            <button class="btn btn-outline-success">책 삭제</button>
         </td>
     </tr>
 </table>

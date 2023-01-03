@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -60,5 +61,13 @@ public class BookController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         return "bookPages/bookPaging";
+    }
+
+    // 수정 페이지 출력
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        BookDTO bookDTO = bookService.findById(id);
+        model.addAttribute("book", bookDTO);
+        return "bookPages/bookUpdate";
     }
 }
