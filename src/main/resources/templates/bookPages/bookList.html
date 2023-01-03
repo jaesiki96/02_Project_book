@@ -35,35 +35,47 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
+
+        .top {
+            position: fixed;
+            top: 90%;
+            left: 90%;
+        }
     </style>
 </head>
 <body>
 <th:block th:replace="commonPages/header :: header"></th:block>
-    <table>
-        <tr th:each="book: ${bookList}">
-            <td th:each="fileName: ${book.storedFileName}">
-                <a th:href="@{|/book/${book.id}|}">
-                    <img th:src="@{|/upload/${fileName}}" alt="" width="140" height="207.031">
-                </a>
-            </td>
-            <td>
-                <a th:href="@{|/book/${book.id}|}">
-                    <span th:text="${book.bookName}" style="font-weight: 700"></span>
-                </a> <br>
-                <span th:text="${book.bookPublisher} + ' · ' + ${book.bookPublishingDate}" style="font-size: 13px; color: #595959"></span> <br>
-                <span th:text="${#numbers.formatInteger(book.bookPrice, 0, 'COMMA') + '원'}"
-                      style="font-weight: 700; font-size: 14px"></span> <br>
-                <span class="content" th:text="${book.bookContent}"></span>
-            </td>
-            <td th:if="${session.loginId != 'admin'}">
-                <button class="btn btn-outline-primary">장바구니</button>
-                <button class="btn btn-outline-success">바로구매</button>
-            </td>
-            <td th:if="${session.loginId == 'admin'}">
-                <button class="btn btn-outline-primary">책 수정</button>
-                <button class="btn btn-outline-success">책 삭제</button>
-            </td>
-        </tr>
-    </table>
+<table>
+    <tr th:each="book: ${bookList}">
+        <td th:each="fileName: ${book.storedFileName}">
+            <a th:href="@{|/book/${book.id}|}">
+                <img th:src="@{|/upload/${fileName}}" alt="" width="140" height="207.031">
+            </a>
+        </td>
+        <td>
+            <a th:href="@{|/book/${book.id}|}">
+                <span th:text="${book.bookName}" style="font-weight: 700"></span>
+            </a> <br>
+            <span th:text="${book.bookPublisher} + ' · ' + ${book.bookPublishingDate}"
+                  style="font-size: 13px; color: #595959"></span> <br>
+            <span th:text="${#numbers.formatInteger(book.bookPrice, 0, 'COMMA') + '원'}"
+                  style="font-weight: 700; font-size: 14px"></span> <br>
+            <span class="content" th:text="${book.bookContent}"></span>
+        </td>
+        <td th:if="${session.loginId != 'admin'}">
+            <button class="btn btn-outline-primary">장바구니</button>
+            <button class="btn btn-outline-success">바로구매</button>
+        </td>
+        <td th:if="${session.loginId == 'admin'}">
+            <button class="btn btn-outline-primary">책 수정</button>
+            <button class="btn btn-outline-success">책 삭제</button>
+        </td>
+    </tr>
+</table>
+<div class="top">
+    <button class="btn btn-secondary">
+        <a href="#" style="font-size: 20px; font-weight: 700; color: white">▲</a>
+    </button>
+</div>
 </body>
 </html>
