@@ -62,12 +62,4 @@ public class BookController {
         model.addAttribute("endPage", endPage);
         return "bookPages/bookPaging";
     }
-
-    // 수정 페이지 출력
-    @GetMapping("/update/{id}")
-    public String updateForm(@PathVariable Long id, Model model) {
-        BookDTO bookDTO = bookService.findById(id);
-        model.addAttribute("book", bookDTO);
-        return "bookPages/bookUpdate";
-    }
 }
