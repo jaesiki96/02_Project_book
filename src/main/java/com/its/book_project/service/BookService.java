@@ -2,10 +2,12 @@ package com.its.book_project.service;
 
 import com.its.book_project.dto.BookDTO;
 import com.its.book_project.entity.BookEntity;
-import com.its.book_project.entity.BookFileEntity;
-import com.its.book_project.repository.BookFileRepository;
 import com.its.book_project.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +21,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookFileRepository bookFileRepository;
 
     // 책 등록 처리
     public Long save(BookDTO bookDTO) throws IOException {
@@ -35,21 +36,17 @@ public class BookService {
             String storedFileName = System.currentTimeMillis() + "_" + originalFileName;
             String savePath = "D:\\springboot_img\\" + storedFileName;
             bookFile.transferTo(new File(savePath));
-
-            BookEntity bookEntity = BookEntity.toSaveFileEntity(bookDTO);
+            bookDTO.setStoredFileName(storedFileName);
+            bookDTO.setOriginalFileName(originalFileName);
+            BookEntity bookEntity = BookEntity.toSaveEntity(bookDTO);
             Long savedId = bookRepository.save(bookEntity).getId();
-
-            BookEntity entity = bookRepository.findById(savedId).get();
-            BookFileEntity bookFileEntity =
-                    BookFileEntity.toSaveBookFileEntity(entity, originalFileName, storedFileName);
-            bookFileRepository.save(bookFileEntity);
             return savedId;
         }
     }
 
     // 책 목록 처리
     public List<BookDTO> findAll() {
-        List<BookEntity> bookEntityList = bookRepository.findAll();
+        List<BookEntity> bookEntityList = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
         List<BookDTO> bookDTOList = new ArrayList<>();
         for (BookEntity bookEntity : bookEntityList) {
             bookDTOList.add(BookDTO.toDTO(bookEntity));
@@ -65,5 +62,22 @@ public class BookService {
         } else {
             return null;
         }
+    }
+
+    // 페이징 처리
+    public Page<BookDTO> paging(Pageable pageable) {
+        int page = pageable.getPageNumber() - 1;
+        final int pageLimit = 3;
+        Page<BookEntity> bookEntities = bookRepository.findAll(PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.ASC,"id")));
+        Page<BookDTO> bookList = bookEntities.map(
+                book -> new BookDTO(
+                        book.getId(),
+                        book.getBookName(),
+                        book.getBookPublisher(),
+                        book.getBookPrice(),
+                        book.getStoredFileName()
+                )
+        );
+        return bookList;
     }
 }

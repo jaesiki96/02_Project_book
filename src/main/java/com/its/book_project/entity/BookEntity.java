@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -35,9 +33,11 @@ public class BookEntity extends BaseEntity {
     @Column
     private int fileAttached;
 
-    // BookEntity 와 BookFileEntity 의 연관관계 (1 : N)
-    @OneToMany(mappedBy = "bookEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<BookFileEntity> bookFileEntityList = new ArrayList<>();
+    @Column
+    private String storedFileName;
+
+    @Column
+    private String originalFileName;
 
     // 책 저장 Entity
     public static BookEntity toSaveEntity(BookDTO bookDTO) {
@@ -47,18 +47,8 @@ public class BookEntity extends BaseEntity {
         bookEntity.setBookPublishingDate(bookDTO.getBookPublishingDate());
         bookEntity.setBookContent(bookDTO.getBookContent());
         bookEntity.setBookPrice(bookDTO.getBookPrice());
-        bookEntity.setFileAttached(0);
-        return bookEntity;
-    }
-
-    // 책 이미지 저장 Entity
-    public static BookEntity toSaveFileEntity(BookDTO bookDTO) {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setBookName(bookDTO.getBookName());
-        bookEntity.setBookPublisher(bookDTO.getBookPublisher());
-        bookEntity.setBookPublishingDate(bookDTO.getBookPublishingDate());
-        bookEntity.setBookContent(bookDTO.getBookContent());
-        bookEntity.setBookPrice(bookDTO.getBookPrice());
+        bookEntity.setStoredFileName(bookDTO.getStoredFileName());
+        bookEntity.setOriginalFileName(bookDTO.getOriginalFileName());
         bookEntity.setFileAttached(1);
         return bookEntity;
     }

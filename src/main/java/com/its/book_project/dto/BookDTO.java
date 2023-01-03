@@ -22,6 +22,10 @@ public class BookDTO {
     private String storedFileName;
     private int fileAttached;
 
+    public BookDTO() {
+
+    }
+
     public static BookDTO toDTO(BookEntity bookEntity) {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(bookEntity.getId());
@@ -33,12 +37,21 @@ public class BookDTO {
         if (bookEntity.getFileAttached() == 1) {
             // 첨부파일 있음
             bookDTO.setFileAttached(bookEntity.getFileAttached());
-            bookDTO.setOriginalFileName(bookEntity.getBookFileEntityList().get(0).getOriginalFileName());
-            bookDTO.setStoredFileName(bookEntity.getBookFileEntityList().get(0).getStoredFileName());
+            bookDTO.setOriginalFileName(bookEntity.getOriginalFileName());
+            bookDTO.setStoredFileName(bookEntity.getStoredFileName());
         } else {
             // 첨부파일 없음
             bookDTO.setFileAttached(bookEntity.getFileAttached());
         }
         return bookDTO;
+    }
+
+
+    public BookDTO(Long id, String bookName, String bookPublisher, int bookPrice, String storedFileName) {
+        this.id = id;
+        this.bookName = bookName;
+        this.bookPublisher = bookPublisher;
+        this.bookPrice = bookPrice;
+        this.storedFileName = storedFileName;
     }
 }

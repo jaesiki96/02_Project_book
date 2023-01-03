@@ -8,14 +8,9 @@
         <nav class="py-2 bg-light border-bottom">
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto" th:if="${session.loginId != 'admin'}">
-                    <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
+                    <li class="nav-item"><a href="/book" class="nav-link link-dark px-2">베스트</a></li>
                 </ul>
                 <ul class="nav me-auto" th:if="${session.loginId == 'admin'}">
-                    <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
                     <li class="nav-item"><a href="/book/save" class="nav-link link-dark px-2">책등록</a></li>
                     <li class="nav-item"><a href="/book/" class="nav-link link-dark px-2">책관리</a></li>
                     <li class="nav-item"><a href="/member/" class="nav-link link-dark px-2">회원관리</a></li>
