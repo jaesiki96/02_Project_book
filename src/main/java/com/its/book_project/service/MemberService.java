@@ -21,8 +21,8 @@ public class MemberService {
     }
 
     // 아이디 중복 체크
-    public String idDupCheck(String memberId) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(memberId);
+    public String emailDupCheck(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
         if (optionalMemberEntity.isEmpty()) {
             return "ok";
         } else {
@@ -42,7 +42,7 @@ public class MemberService {
 
     // 로그인 처리
     public MemberDTO login(MemberDTO memberDTO) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(memberDTO.getMemberId());
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
         if (optionalMemberEntity.isPresent()) {
             MemberEntity memberEntity = optionalMemberEntity.get();
             if (memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
@@ -77,7 +77,7 @@ public class MemberService {
 
     // 회원수정 페이지 출력
     public MemberDTO findByMemberId(String loginId) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(loginId);
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(loginId);
         if (optionalMemberEntity.isPresent()) {
             return MemberDTO.toDTO(optionalMemberEntity.get());
         } else {

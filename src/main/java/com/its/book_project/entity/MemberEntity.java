@@ -16,7 +16,7 @@ public class MemberEntity extends BaseEntity {
     private Long id;
 
     @Column(length = 20, nullable = false, unique = true)
-    private String memberId;
+    private String memberEmail;
 
     @Column(length = 20, nullable = false)
     private String memberPassword;
@@ -33,7 +33,7 @@ public class MemberEntity extends BaseEntity {
     // Member 저장 Entity
     public static MemberEntity toSaveEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setMemberId(memberDTO.getMemberId());
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
         memberEntity.setMemberPassword(memberDTO.getMemberPassword());
         memberEntity.setMemberName(memberDTO.getMemberName());
         memberEntity.setMemberPhone(memberDTO.getMemberPhone());
@@ -46,7 +46,7 @@ public class MemberEntity extends BaseEntity {
         MemberEntity memberEntity = new MemberEntity();
         // setId 추가
         memberEntity.setId(memberDTO.getId());
-        memberEntity.setMemberId(memberDTO.getMemberId());
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
         memberEntity.setMemberPassword(memberDTO.getMemberPassword());
         memberEntity.setMemberName(memberDTO.getMemberName());
         memberEntity.setMemberPhone(memberDTO.getMemberPhone());

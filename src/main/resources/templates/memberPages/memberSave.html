@@ -14,7 +14,7 @@
 <div id="memberSave" style="width: 460px; margin: 150px auto; text-align: center">
     <h2 class="mb-xl-5">회원가입</h2>
     <form action="/member/save" method="post" name="saveForm">
-        <input type="text" id="memberId" name="memberId" onblur="idDupCheck()" class="form-control mb-xl-3" placeholder="아이디">
+        <input type="text" id="memberEmail" name="memberEmail" onblur="idDupCheck()" class="form-control mb-xl-3" placeholder="아이디 또는 이메일">
         <input type="password" id="memberPassword" name="memberPassword" class="form-control mb-xl-3" placeholder="비밀번호">
         <input type="text" id="memberName" name="memberName" class="form-control mb-xl-3" placeholder="이름">
         <input type="text" id="memberPhone" name="memberPhone" onblur="phoneDupCheck()" oninput="autoHyphen(this)" maxlength="13" class="form-control mb-xl-3" placeholder="전화번호">
@@ -27,21 +27,21 @@
 <script th:inline="javascript">
     // 아이디 중복 체크
     const idDupCheck = () => {
-        const id = document.getElementById("memberId").value;
-        const idBox = document.getElementById("memberId");
-        if (id.length != 0) {
+        const email = document.getElementById("memberEmail").value;
+        const emailBox = document.getElementById("memberEmail");
+        if (email.length != 0) {
             axios({
                 method: "post",
-                url: "/member/idDupCheck",
+                url: "/member/emailDupCheck",
                 params: {
-                    inputId: id
+                    inputId: email
                 }
             }).then(res => {
-                idBox.style.borderColor = "green";
+                emailBox.style.borderColor = "green";
                 return true;
             }).catch(err => {
-                idBox.style.borderColor = "red";
-                alert("중복된 아이디입니다.");
+                emailBox.style.borderColor = "red";
+                alert("중복된 이메일 또는 아이디입니다.");
                 return false;
             })
         }
@@ -85,12 +85,12 @@
     }
     // 공백 alert
     const saveButton = () => {
-        const id = document.getElementById("memberId").value;
+        const email = document.getElementById("memberEmail").value;
         const pass = document.getElementById("memberPassword").value;
         const name = document.getElementById("memberName").value;
         const phone = document.getElementById("memberPhone").value;
         const address = document.getElementById("memberAddress").value;
-        if (id.length == 0) {
+        if (email.length == 0) {
             alert("아이디를 입력해주세요.");
             return false;
         } else if (pass.length == 0) {

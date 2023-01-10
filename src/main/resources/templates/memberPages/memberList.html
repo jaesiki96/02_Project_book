@@ -33,7 +33,7 @@
     <tr th:each="member: ${memberList}">
         <td th:text="${member.id}"></td>
         <td>
-            <a th:text="${member.memberId}" th:href="@{|/member/${member.id}|}"></a>
+            <a th:text="${member.memberEmail}" th:href="@{|/member/${member.id}|}"></a>
         </td>
         <td th:text="*{#temporals.format(member.memberCreatedDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
     </tr>

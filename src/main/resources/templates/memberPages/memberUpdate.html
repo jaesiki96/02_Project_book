@@ -15,7 +15,7 @@
     <h2 class="mb-xl-5">정보 수정</h2>
     <form action="/member/update" method="post" name="updateForm">
         <input type="hidden" id="id" name="id" th:value="${member.id}" class="form-control mb-xl-3" readonly>
-        <input type="text" id="memberId" name="memberId" th:value="${member.memberId}" class="form-control mb-xl-3"
+        <input type="text" id="memberEmail" name="memberEmail" th:value="${member.memberEmail}" class="form-control mb-xl-3"
                readonly>
         <input type="password" id="memberPassword" name="memberPassword" class="form-control mb-xl-3"
                placeholder="비밀번호">
@@ -71,12 +71,12 @@
     }
     // 공백 alert
     const updateButton = () => {
-        const id = document.getElementById("memberId").value;
+        const Email = document.getElementById("memberEmail").value;
         const pass = document.getElementById("memberPassword").value;
         const name = document.getElementById("memberName").value;
         const phone = document.getElementById("memberPhone").value;
         const address = document.getElementById("memberAddress").value;
-        if (id.length == 0) {
+        if (Email.length == 0) {
             alert("아이디를 입력해주세요.");
             return false;
         } else if (pass.length == 0) {

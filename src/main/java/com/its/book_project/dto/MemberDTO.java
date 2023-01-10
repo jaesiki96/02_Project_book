@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 public class MemberDTO {
     private Long id;
-    private String memberId;
+    private String memberEmail;
     private String memberPassword;
     private String memberName;
     private String memberPhone;
@@ -22,7 +22,7 @@ public class MemberDTO {
     public static MemberDTO toDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(memberEntity.getId());
-        memberDTO.setMemberId(memberEntity.getMemberId());
+        memberDTO.setMemberEmail(memberEntity.getMemberEmail());
         memberDTO.setMemberPassword(memberEntity.getMemberPassword());
         memberDTO.setMemberName(memberEntity.getMemberName());
         memberDTO.setMemberPhone(memberEntity.getMemberPhone());

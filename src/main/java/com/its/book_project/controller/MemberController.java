@@ -32,9 +32,9 @@ public class MemberController {
     }
 
     // 아이디 중복 체크
-    @PostMapping("/idDupCheck")
-    public ResponseEntity idDupCheck(@RequestParam("inputId") String memberId) {
-        String checkResult = memberService.idDupCheck(memberId);
+    @PostMapping("/emailDupCheck")
+    public ResponseEntity idDupCheck(@RequestParam("inputId") String memberEmail) {
+        String checkResult = memberService.emailDupCheck(memberEmail);
         if (checkResult != null) {
             return new ResponseEntity<>("사용가능", HttpStatus.OK);
         } else {
@@ -65,7 +65,7 @@ public class MemberController {
                         @RequestParam(value = "redirectURL", defaultValue = "/book/") String redirectURL) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
-            session.setAttribute("loginId", memberDTO.getMemberId());
+            session.setAttribute("loginId", memberDTO.getMemberEmail());
             return "redirect:" + redirectURL;
         } else {
             return "memberPages/memberLogin";
