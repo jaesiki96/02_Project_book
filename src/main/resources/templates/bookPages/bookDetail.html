@@ -106,17 +106,23 @@
 <script th:inline="javascript">
     const orderSave = () => {
         const bookId = [[${book.id}]];
-        axios({
-            method: "post",
-            url: "/order/save",
-            data: {
-                bookId: bookId
-            }
-        }).then(res => {
-            alert("주문이 완료되었습니다");
-        }).catch(err => {
-            console.log("실패")
-        })
+        const sessionId = [[${session.loginId}]];
+        if (sessionId != null) {
+            axios({
+                method: "post",
+                url: "/order/save",
+                data: {
+                    bookId: bookId
+                }
+            }).then(res => {
+                alert("주문이 완료되었습니다");
+            }).catch(err => {
+                console.log("실패")
+            })
+        } else {
+            alert("로그인 후 이용해주세요.")
+            location.href = "/member/login";
+        }
     }
 </script>
 </html>
