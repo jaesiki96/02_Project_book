@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,9 @@ public class MemberEntity extends BaseEntity {
 
     @Column(length = 100, nullable = false)
     private String memberAddress;
+
+    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.PERSIST, orphanRemoval = false, fetch = FetchType.LAZY)
+    private List<OrderEntity> orderEntityList = new ArrayList<>();
 
     // Member 저장 Entity
     public static MemberEntity toSaveEntity(MemberDTO memberDTO) {

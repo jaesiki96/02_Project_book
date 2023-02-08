@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -38,6 +40,9 @@ public class BookEntity extends BaseEntity {
 
     @Column
     private String originalFileName;
+
+    @OneToMany(mappedBy = "bookEntity", cascade = CascadeType.PERSIST, orphanRemoval = false, fetch = FetchType.LAZY)
+    private List<OrderEntity> orderEntityList = new ArrayList<>();
 
     // 책 저장 Entity
     public static BookEntity toSaveEntity(BookDTO bookDTO) {

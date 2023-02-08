@@ -2,6 +2,7 @@ package com.its.book_project.controller;
 
 import com.its.book_project.dto.BookDTO;
 import com.its.book_project.service.BookService;
+import com.its.book_project.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
+    private final MemberService memberService;
 
     // 책 등록 페이지 출력
     @GetMapping("/save")
